@@ -373,7 +373,7 @@ int dfxpEqGetBandBoostCut_FromRegistry(PT_HANDLE *hp_dfxp, int i_band_num, realt
 	else if (*rp_boost_cut > DFXP_GRAPHIC_EQ_MAX_BOOST_OR_CUT_DB)
 		*rp_boost_cut = DFXP_GRAPHIC_EQ_MAX_BOOST_OR_CUT_DB;
 
-	swprintf(wcp_boost_cut, sizeof(wcp_boost_cut)/sizeof(*(wcp_boost_cut)), L"%ls", wcp_key_value);
+	swprintf(wcp_boost_cut, wcslen(wcp_key_value) + 1, L"%ls", wcp_key_value);
 
 	return(OKAY);
 }

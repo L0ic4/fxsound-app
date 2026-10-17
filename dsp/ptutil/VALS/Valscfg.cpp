@@ -251,7 +251,7 @@ int PT_DECLSPEC valsCfgGetTitle(PT_HANDLE *hp_vals_cfg, wchar_t *wcp_title)
 	if (wcp_title == NULL)
 	   return(NOT_OKAY);
 	   
-	swprintf(wcp_title, sizeof(wcp_title)/sizeof(*(wcp_title)), L"%ls", cast_handle->wcp_title);
+	swprintf(wcp_title, wcslen(cast_handle->wcp_title) + 1, L"%ls", cast_handle->wcp_title);
 
 	return(OKAY);
 }

@@ -541,7 +541,7 @@ int PT_DECLSPEC pstrRemovePostfixFromLine_Wide(wchar_t *wcp_with_postfix, wchar_
 
 	/* Copy the proper chaacters to create the string without the postfix */
 	if (postfix_start_index == 0)
-		swprintf(wcp_without_postfix, sizeof(wcp_without_postfix)/sizeof(*(wcp_without_postfix)), L"");
+		swprintf(wcp_without_postfix, 1, L"");
 	else
 	{
       wcsncpy(wcp_without_postfix, wcp_with_postfix, postfix_start_index); 
@@ -864,7 +864,7 @@ int PT_DECLSPEC pstrRemoveAllSpaces_Wide(wchar_t *wcp_string)
    new_string[new_index] = L'\0';
 
 	if (wcslen(new_string) > 0)
-	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%ls", new_string);
+	   swprintf(wcp_string, wcslen(new_string) + 1, L"%ls", new_string);
 	else
 		wcp_string[0] = L'\0';
 
@@ -924,7 +924,7 @@ int PT_DECLSPEC pstrRemoveAllLeadingSpaces_Wide(wchar_t *wcp_string)
    new_string[new_index] = L'\0';
 
 	if (wcslen(new_string) > 0)
-	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%ls", new_string);
+	   swprintf(wcp_string, wcslen(new_string) + 1, L"%ls", new_string);
 	else
 		wcp_string[0] = L'\0';
 
@@ -1028,7 +1028,7 @@ int PT_DECLSPEC pstrMakeNoDoublesBackSlashes_Wide(wchar_t *wcp_string)
    new_string[new_index] = L'\0';
 
 	if (wcslen(new_string) > 0)
-	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%ls", new_string);
+	   swprintf(wcp_string, wcslen(new_string) + 1, L"%ls", new_string);
 	else
 		wcp_string[0] = L'\0';
 

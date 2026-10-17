@@ -92,7 +92,7 @@ int PT_DECLSPEC pstrAddStringToStringList_Wide(wchar_t ***wcppp_array, int i_ori
 		return(NOT_OKAY);
 
 	/* Copy the new string */
-	swprintf((*wcppp_array)[i_original_array_length], sizeof((*wcppp_array)[i_original_array_length])/sizeof(*((*wcppp_array)[i_original_array_length])), L"%ls", wcp_new_string);
+	swprintf((*wcppp_array)[i_original_array_length], i_max_strlen, L"%ls", wcp_new_string);
 
 	/* Sort the array if requested */
 	if (i_sort)
@@ -136,7 +136,7 @@ int PT_DECLSPEC pstrArrayCopyStringList(wchar_t **wcpp_original_array,
 			return(NOT_OKAY);
 
 		/* Copy the new string */
-		swprintf((*wcppp_new_array)[index], sizeof((*wcppp_new_array)[index])/sizeof(*((*wcppp_new_array)[index])), L"%ls", wcpp_original_array[index]);
+		swprintf((*wcppp_new_array)[index], i_max_strlen, L"%ls", wcpp_original_array[index]);
 	}
 
 	return(OKAY);
