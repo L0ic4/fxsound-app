@@ -95,11 +95,12 @@ int main()
 
     // A saved user preset keeps its full name and values.
     std::string dir = std::string(getenv("XDG_CONFIG_HOME")) + "/fxsound";
-    std::wstring path(dir.begin(), dir.end());
-    path += L"/user_test.fac";
+    std::wstring wdir(dir.begin(), dir.end());           // savePreset takes the directory,
+    std::wstring path = wdir + L"/My Late Night Mix.fac";  // like FxController::savePreset
     dsp.setEffectValue(DfxDsp::Bass, 7.0f);
     dsp.setEqBandBoostCut(2, 4.5f);
-    ok &= check(dsp.savePreset(L"My Late Night Mix", path) == 0, "savePreset returns OK");
+    ok &= check(dsp.savePreset(L"My Late Night Mix", wdir) == 0, "savePreset returns OK");
+    ok &= check(std::ifstream(std::string(path.begin(), path.end())).good(), "preset file is <dir>/<name>.fac");
     DfxPreset info = dsp.getPresetInfo(path);
     std::printf("saved preset name read back: '%ls'\n", info.name.c_str());
     ok &= check(info.name == L"My Late Night Mix", "preset name round-trips");
