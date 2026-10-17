@@ -110,6 +110,12 @@ int main()
     ok &= check(std::fabs(dsp.getEffectValue(DfxDsp::Bass) * 10.0f - 7.0f) < 0.06, "preset restores effect value");
     ok &= check(std::fabs(dsp.getEqBandBoostCut(2) - 4.5f) < 0.06, "preset restores eq band");
 
+    // Non-ASCII names are stored as UTF-8 and read back unchanged.
+    const std::wstring intl = L"Soirée ♫ café";
+    dsp.savePreset(intl, wdir);
+    DfxPreset intl_info = dsp.getPresetInfo(wdir + L"/" + intl + L".fac");
+    ok &= check(intl_info.name == intl, "non-ASCII preset name round-trips");
+
     std::printf("DSP SETTINGS SELFTEST: %s\n", ok ? "PASS" : "FAIL");
     return ok ? 0 : 1;
 }
