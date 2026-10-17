@@ -74,8 +74,9 @@ sudo apt-get install -y \
 
 ## CI
 
-GitHub Actions builds an AppImage on every push and pull request using an
-`ubuntu-20.04` runner (glibc 2.31 baseline). The workflow is at
+GitHub Actions builds an AppImage and runs the `unit` tests on every push and
+pull request to `main` and `develop/linux`, using an `ubuntu-22.04` runner
+(glibc 2.35 baseline). The workflow is at
 `.github/workflows/build-appimage.yml`. Artifacts are uploaded for 30 days;
 tagged releases (`v*.*.*.*`) produce a draft GitHub Release automatically.
 
