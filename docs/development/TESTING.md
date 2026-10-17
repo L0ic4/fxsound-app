@@ -66,4 +66,4 @@ PASS = executed and passed · FAIL = executed and failed · BLOCKED = prerequisi
 | Reliability | latency, hours-long playback | NOT RUN |
 | Tray | SNI dbusmenu items | PASS |
 | Hotkeys | X11 hotkeys | NOT RUN |
-| Windows | shared-code changes (`u_DfxDsp.h`) build on MSVC | BLOCKED (no Windows toolchain) |
+| Windows | shared-code changes build on MSVC (`u_DfxDsp.h`, `%s`→`%ls` and swprintf sizes in dsp/ and pstr/, `PT_PATH_JOIN_FMT`; all intended to be no-ops on MSVC) | BLOCKED (no Windows toolchain) |
