@@ -864,7 +864,7 @@ int PT_DECLSPEC pstrRemoveAllSpaces_Wide(wchar_t *wcp_string)
    new_string[new_index] = L'\0';
 
 	if (wcslen(new_string) > 0)
-	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%s", new_string);
+	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%ls", new_string);
 	else
 		wcp_string[0] = L'\0';
 
@@ -924,7 +924,7 @@ int PT_DECLSPEC pstrRemoveAllLeadingSpaces_Wide(wchar_t *wcp_string)
    new_string[new_index] = L'\0';
 
 	if (wcslen(new_string) > 0)
-	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%s", new_string);
+	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%ls", new_string);
 	else
 		wcp_string[0] = L'\0';
 
@@ -1028,7 +1028,7 @@ int PT_DECLSPEC pstrMakeNoDoublesBackSlashes_Wide(wchar_t *wcp_string)
    new_string[new_index] = L'\0';
 
 	if (wcslen(new_string) > 0)
-	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%s", new_string);
+	   swprintf(wcp_string, sizeof(wcp_string)/sizeof(*(wcp_string)), L"%ls", new_string);
 	else
 		wcp_string[0] = L'\0';
 
@@ -1916,7 +1916,7 @@ int PT_DECLSPEC pstrTruncate_Wide(wchar_t *wcp_original_string, wchar_t *wcp_tru
 	/* Check if no truncation is needed */
 	if (i_truncated_length >= i_orig_length)
 	{
-		swprintf(wcp_truncated_string, PT_MAX_GENERIC_STRLEN, L"%s", wcp_original_string);
+		swprintf(wcp_truncated_string, PT_MAX_GENERIC_STRLEN, L"%ls", wcp_original_string);
 		return(OKAY);
 	}
 

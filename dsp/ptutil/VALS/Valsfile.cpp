@@ -86,7 +86,7 @@ int PT_DECLSPEC valsSave(PT_HANDLE *hp_vals, wchar_t *wcp_dir_path, wchar_t *wcp
 		return(NOT_OKAY);
 
 	/* Construct the fullpath */
-	swprintf(fullpath_str, sizeof(fullpath_str)/sizeof(*(fullpath_str)), L"%s\\%s", wcp_dir_path, wcp_filename);
+	swprintf(fullpath_str, sizeof(fullpath_str)/sizeof(*(fullpath_str)), L"%ls\\%ls", wcp_dir_path, wcp_filename);
 
 	/* Open the file for writing */
 	stream = fileOpen_Wide(fullpath_str, L"w", cast_handle->slout_hdl);
@@ -175,7 +175,7 @@ int PT_DECLSPEC valsSave(PT_HANDLE *hp_vals, wchar_t *wcp_dir_path, wchar_t *wcp
        if (cast_handle->app_depend.wcpp_strings[index] == NULL)
           fwprintf(stream, L"\n");
        else
-          fwprintf(stream, L"%s\n", cast_handle->app_depend.wcpp_strings[index]);
+          fwprintf(stream, L"%ls\n", cast_handle->app_depend.wcpp_strings[index]);
     }				
 
 	/* Write the Graphic EQ settings */
@@ -273,7 +273,7 @@ int PT_DECLSPEC valsCalcDateStrings(wchar_t *wcp_filename, wchar_t *wcp_formatte
 	else if (length == 0)
 		swprintf(wcp_sec_str, sizeof(wcp_sec_str)/sizeof(*(wcp_sec_str)), L"00.000");
 
-	swprintf(wcp_filename, sizeof(wcp_filename)/sizeof(*(wcp_filename)), L"%s%s", wcp_date_str, wcp_sec_str);
+	swprintf(wcp_filename, sizeof(wcp_filename)/sizeof(*(wcp_filename)), L"%ls%ls", wcp_date_str, wcp_sec_str);
 
 	return(OKAY);
 }
@@ -324,7 +324,7 @@ int PT_DECLSPEC valsRead(wchar_t *wcp_file_path, int i_trace_mode, CSlout *hp_sl
 
 	if (cast_handle->i_trace_mode)
 	{
-		swprintf(cast_handle->wcp_msg1, sizeof(cast_handle->wcp_msg1)/sizeof(*(cast_handle->wcp_msg1)), L"valsRead(): Entered, wcp_file_path = %s", wcp_file_path);
+		swprintf(cast_handle->wcp_msg1, sizeof(cast_handle->wcp_msg1)/sizeof(*(cast_handle->wcp_msg1)), L"valsRead(): Entered, wcp_file_path = %ls", wcp_file_path);
 		(cast_handle->slout_hdl)->Message_Wide(FIRST_LINE, cast_handle->wcp_msg1);
 	}
 
@@ -568,7 +568,7 @@ int PT_DECLSPEC valsCheckFileType(wchar_t *wcp_file_path, int *ip_proper_type, C
 		return(OKAY);
 	}
 
-	swscanf(wcp_line_str, L"%s\n", wcp_type_str);
+	swscanf(wcp_line_str, L"%ls\n", wcp_type_str);
 
 	if (wcslen(wcp_type_str) <= 0)
 	{
