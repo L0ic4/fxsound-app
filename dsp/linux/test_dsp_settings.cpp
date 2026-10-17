@@ -93,6 +93,22 @@ int main()
     std::printf("registry leaf keys: %zu, one-character: %zu\n", leaf.size(), one_char);
     ok &= check(leaf.size() >= 10 && one_char == 0, "settings use full, distinct key names");
 
+    // A saved user preset keeps its full name and values.
+    std::string dir = std::string(getenv("XDG_CONFIG_HOME")) + "/fxsound";
+    std::wstring path(dir.begin(), dir.end());
+    path += L"/user_test.fac";
+    dsp.setEffectValue(DfxDsp::Bass, 7.0f);
+    dsp.setEqBandBoostCut(2, 4.5f);
+    ok &= check(dsp.savePreset(L"My Late Night Mix", path) == 0, "savePreset returns OK");
+    DfxPreset info = dsp.getPresetInfo(path);
+    std::printf("saved preset name read back: '%ls'\n", info.name.c_str());
+    ok &= check(info.name == L"My Late Night Mix", "preset name round-trips");
+    dsp.setEffectValue(DfxDsp::Bass, 1.0f);
+    dsp.setEqBandBoostCut(2, 0.0f);
+    dsp.loadPreset(path);
+    ok &= check(std::fabs(dsp.getEffectValue(DfxDsp::Bass) * 10.0f - 7.0f) < 0.06, "preset restores effect value");
+    ok &= check(std::fabs(dsp.getEqBandBoostCut(2) - 4.5f) < 0.06, "preset restores eq band");
+
     std::printf("DSP SETTINGS SELFTEST: %s\n", ok ? "PASS" : "FAIL");
     return ok ? 0 : 1;
 }
